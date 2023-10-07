@@ -67,6 +67,7 @@
     <nav class="navbar navbar-inverse">
         <!--navbar-fixed-top-->
         @Html.Partial("_NavPartialView")
+       
         <!-- /.container-->
     </nav>
     <!--End-Nav-->
@@ -97,10 +98,10 @@
     </div>
         <!-- /.container-->
         <!--Sách bán nhiều-->
-        <div class="container">
-            @RenderSection("SachBanNhieu", required: false)
-
-        </div>
+    <div class="container">
+        @RenderSection("SachBanNhieu", required: false)
+        
+    </div>
         <!-- /.container-->
         <!--Footer-->
         @Html.Partial("_FooterPartialView")
