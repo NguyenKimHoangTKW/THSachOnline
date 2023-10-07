@@ -14,7 +14,6 @@ namespace SachOnline.Controllers
     public class AccountController : Controller
     {
         private SachOnlineEntities db = new SachOnlineEntities();
-
         // GET: Account
         public ActionResult Index()
         {
