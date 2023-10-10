@@ -136,7 +136,8 @@ namespace SachOnline.Controllers
             List<GioHang> lstGiohang = LayGioHang();
             ddh.MaKH = kh.MaKH;
             ddh.NgayDat = DateTime.Now;
-            ddh.TinhTrangGiaoHang = 1;
+            TimeSpan threeDays = new TimeSpan(3, 0, 0, 0);
+            ddh.NgayGiao = ddh.NgayDat + threeDays;
             ddh.DaThanhToan = false;
             db.DONDATHANGs.Add(ddh);
             db.SaveChanges();

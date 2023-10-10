@@ -6,6 +6,7 @@
 }
 
 <h2 style="text-align:center">THÔNG TIN ĐƠN HÀNG</h2>
+<h2 style="color:red;">@ViewBag.ThongBao</h2>
 <table align="center" border="1">
     <tr style="text-align:center;  font-weight:bold;">
         <td>Mã  Sách</td>
@@ -39,7 +40,7 @@ item.iMaSach
     }
     <tr>
     <tr>
-        <td colspan="3" style="text-align:right;  color:red;  font-weight:bold;  padding- right:5px;">
+        <td colspan="3" style="text-align:right;  color:red;  font-weight:bold;  padding-right:5px;">
             Số  lượng  sách:  @string.Format("{0:#,##0}", @ViewBag.TongSoLuong)
         </td>
         <td colspan="3" style="text-align:center;  color:red;  font-weight:bold;">
@@ -74,12 +75,6 @@ item.iMaSach
         <tr style="height:40px;">
             <td>Ngày  đặt:</td>
             <td style="font-weight:bold">@DateTime.Now.ToShortDateString()</td>
-        </tr>
-        <tr style="height:40px;">
-            <td>Ngày  giao:</td>
-            <td style="font-weight:bold">
-                <input type="date" name="NgayGiao" />
-            </td>
         </tr>
         <tr style="height:40px;">
             <td></td>
