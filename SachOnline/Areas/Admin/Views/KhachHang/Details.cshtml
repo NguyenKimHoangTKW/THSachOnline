@@ -5,7 +5,7 @@
 }
 
 <!DOCTYPE html>
-
+@Styles.Render("~/Content/AdminStyle/css")
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -17,66 +17,70 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.HoTen)
+                    Tên khách hàng
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.HoTen)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.TaiKhoan)
+               Tên tài khoản
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.TaiKhoan)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.MatKhau)
+               Mật khẩu
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.MatKhau)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.Email)
+               Email
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Email)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.DiaChi)
+                Địa chỉ
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.DiaChi)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.DienThoai)
+                Số điện thoại
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.DienThoai)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.NgaySinh)
+               Ngày sinh
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.NgaySinh)
             </dd>
-    
+
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.MaKH }) |
-        @Html.ActionLink("Back to List", "Index")
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.MaKH })
+        </button>
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Back to List", "Index")
+            </button>
     </p>
 </body>
 </html>

@@ -48,16 +48,22 @@ namespace SachOnline.Controllers
         public ActionResult SachTheoChuDe(int iMaCD, int? page)
         {
             int pageSize = 3;
-            var links = (from l in db.SACHes
+            var sach = (from l in db.SACHes
                          where l.MaCD == iMaCD
-                         select l).OrderBy(x => x.MaCD);
+                         select l).OrderBy(x => x.MaSach);
             int pageNumber = (page ?? 1);          
-            return View(links.ToPagedList(pageNumber, pageSize));
+            return View(sach.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult SachTheoNhaXuatBan(int id)
+        public ActionResult SachTheoNhaXuatBan(int iMaNXB, int? page)
         {
-            var sachs = from nxb in db.SACHes where nxb.MaNXB == id select nxb;
-            return View(sachs);
+            int pageSize = 3;
+            var nxb = (from s in db.SACHes
+                       where s.MaNXB == iMaNXB
+                       select s).OrderBy(x => x.MaSach);
+            int pageNumber = (page ?? 1);
+            return View(nxb.ToPagedList(pageNumber, pageSize));
         }
+   
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SachOnline.Models.SACH>
+﻿@model PagedList.IPagedList<SachOnline.Models.SACH>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Sách theo Nhà Xuất Bản";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -39,3 +40,10 @@
         </li>
     </ul>
 </nav>
+<!-- Thêm mã phân trang -->
+<br />
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+<!-- Kết thúc -->

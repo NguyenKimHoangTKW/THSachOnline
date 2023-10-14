@@ -10,32 +10,38 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    @Styles.Render("~/Content/AdminStyle/css")
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TenChuDe)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenChuDe)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.MaCD }) |
-                @Html.ActionLink("Details", "Details", new { id=item.MaCD }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.MaCD })
-            </td>
-        </tr>
-    }
-    
-    </table>
+    <hr />
+    <button class="btn btn-primary btn-tone m-r-5">
+        @Html.ActionLink("Thêm mới chủ đề", "Create")
+      </button>
+    <div class="table-responsive">
+            <table class="table">
+                <tr>
+
+                    <th scope="col">Tên chủ đề</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.TenChuDe</td>
+
+                        <td>
+                            <button class="btn btn-primary btn-tone m-r-5">@Html.ActionLink("Thêm", "Details", new { id = item.MaCD })</button>
+                            <button class="btn btn-secondary btn-tone m-r-5"> @Html.ActionLink("Sửa", "Edit", new { id = item.MaCD })</button>
+                            <button class="btn btn-success btn-tone m-r-5">@Html.ActionLink("Xóa", "Edit", new { id = item.MaCD })</button>
+
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+
 </body>
 </html>

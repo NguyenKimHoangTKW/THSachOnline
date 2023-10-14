@@ -5,61 +5,66 @@
 }
 
 <!DOCTYPE html>
-
+@Styles.Render("~/Content/AdminStyle/css")
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
+    <hr />
+    <p><button class="btn btn-primary btn-tone m-r-5">
+    @Html.ActionLink("Thêm đơn hàng", "Create")
+</button>
     </p>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DaThanhToan)
+                Đã thanh toán
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TinhTrangGiaoHang)
+               Tình trạng giao hàng
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgayDat)
+               Ngày đặt
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgayGiao)
+                Ngày giao
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KHACHHANG.HoTen)
+                Tên khách hàng
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DaThanhToan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayDat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayGiao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KHACHHANG.HoTen)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.MaDonHang }) |
-                @Html.ActionLink("Details", "Details", new { id=item.MaDonHang }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.MaDonHang })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DaThanhToan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayGiao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.HoTen)
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MaDonHang }) </button>
+                    <button class="btn btn-secondary btn-tone m-r-5">
+                        @Html.ActionLink("Details", "Details", new { id = item.MaDonHang }) </button>
+                    <button class="btn btn-success btn-tone m-r-5"> @Html.ActionLink("Delete", "Delete", new { id = item.MaDonHang })</button>
+</td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>

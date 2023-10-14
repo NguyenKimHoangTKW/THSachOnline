@@ -5,73 +5,83 @@
 }
 
 <!DOCTYPE html>
-
+@Styles.Render("~/Content/AdminStyle/css")
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
 <body>
+    <hr />
     <p>
-        @Html.ActionLink("Create New", "Create")
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Create New", "Create")
+        </button>
     </p>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HoTen)
+               Tên khách hàng
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TaiKhoan)
+                Tên tài khoản
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MatKhau)
+                Mật khẩu
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DiaChi)
+                Địa chỉ 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DienThoai)
+                Số điện thoại
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgaySinh)
+               Ngày sinh
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoTen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaiKhoan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DienThoai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgaySinh)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.MaKH }) |
-                @Html.ActionLink("Details", "Details", new { id=item.MaKH }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.MaKH })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaiKhoan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatKhau)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MaKH })
+                    </button>
+                    <button class="btn btn-secondary btn-tone m-r-5">
+                        @Html.ActionLink("Details", "Details", new { id = item.MaKH })
+                    </button>
+                    <button class="btn btn-success btn-tone m-r-5">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MaKH })
+                    </button>
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>

@@ -5,7 +5,7 @@
 }
 
 <!DOCTYPE html>
-
+@Styles.Render("~/Content/AdminStyle/css")
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -17,7 +17,7 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.DaThanhToan)
+                Đã thanh toán
             </dt>
     
             <dd>
@@ -25,7 +25,7 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.TinhTrangGiaoHang)
+               Tình trạng giao hàng
             </dt>
     
             <dd>
@@ -33,7 +33,7 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.NgayDat)
+                Ngày đặt
             </dt>
     
             <dd>
@@ -41,7 +41,7 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.NgayGiao)
+               Ngày giao
             </dt>
     
             <dd>
@@ -49,7 +49,7 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.KHACHHANG.HoTen)
+                Tên khách hàng
             </dt>
     
             <dd>
@@ -59,8 +59,12 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.MaDonHang }) |
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.MaDonHang })
+        </button>
+    <button class="btn btn-primary btn-tone m-r-5">
         @Html.ActionLink("Back to List", "Index")
+    </button>
     </p>
 </body>
 </html>

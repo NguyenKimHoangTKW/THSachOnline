@@ -254,3 +254,7 @@ D:\LapTrinhWeb\ThucHanh\Buoi1\SachOnline\SachOnline\bin\PagedList.dll
 D:\LapTrinhWeb\ThucHanh\Buoi1\SachOnline\SachOnline\bin\PagedList.Mvc.dll
 D:\LapTrinhWeb\ThucHanh\Buoi1\SachOnline\SachOnline\bin\PagedList.xml
 D:\LapTrinhWeb\ThucHanh\Buoi1\SachOnline\SachOnline\bin\PagedList.Mvc.xml
+D:\THwebT7\SachOnline\THSachOnline\SachOnline\bin\PagedList.dll
+D:\THwebT7\SachOnline\THSachOnline\SachOnline\bin\PagedList.Mvc.dll
+D:\THwebT7\SachOnline\THSachOnline\SachOnline\bin\PagedList.xml
+D:\THwebT7\SachOnline\THSachOnline\SachOnline\bin\PagedList.Mvc.xml
