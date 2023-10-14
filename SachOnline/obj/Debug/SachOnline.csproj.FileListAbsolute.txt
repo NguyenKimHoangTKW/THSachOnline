@@ -250,3 +250,7 @@ D:\THwebT7\SachOnline\THSachOnline\SachOnline\obj\Debug\SachOnline.csproj.CoreCo
 D:\THwebT7\SachOnline\THSachOnline\SachOnline\obj\Debug\SachOnline.csproj.CopyComplete
 D:\THwebT7\SachOnline\THSachOnline\SachOnline\obj\Debug\SachOnline.dll
 D:\THwebT7\SachOnline\THSachOnline\SachOnline\obj\Debug\SachOnline.pdb
+D:\LapTrinhWeb\ThucHanh\Buoi1\SachOnline\SachOnline\bin\PagedList.dll
+D:\LapTrinhWeb\ThucHanh\Buoi1\SachOnline\SachOnline\bin\PagedList.Mvc.dll
+D:\LapTrinhWeb\ThucHanh\Buoi1\SachOnline\SachOnline\bin\PagedList.xml
+D:\LapTrinhWeb\ThucHanh\Buoi1\SachOnline\SachOnline\bin\PagedList.Mvc.xml

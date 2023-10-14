@@ -53,6 +53,12 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -129,6 +135,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChuDeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DonHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KhachHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NhaXuatBanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SACHesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\SachOnlineController.cs" />
@@ -197,6 +210,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\ScriptLoginAdmin.js" />
+    <Content Include="Content\Style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -223,6 +239,36 @@
     <Content Include="Models\SachOnlineModel.edmx.diagram">
       <DependentUpon>SachOnlineModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\SACHes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SACHes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SACHes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SACHes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SACHes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -315,6 +361,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

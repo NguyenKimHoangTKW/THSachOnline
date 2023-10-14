@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
+using System.Web.UI;
 
 namespace SachOnline.Controllers
 {
@@ -42,10 +45,14 @@ namespace SachOnline.Controllers
             var listNXB = from nxb in db.NHAXUATBANs select nxb;
             return PartialView(listNXB);
         }
-        public ActionResult SachTheoChuDe(int id)
+        public ActionResult SachTheoChuDe(int iMaCD, int? page)
         {
-            var sach = from s in db.SACHes where s.MaCD == id select s;
-            return View(sach);
+            int pageSize = 3;
+            var links = (from l in db.SACHes
+                         where l.MaCD == iMaCD
+                         select l).OrderBy(x => x.MaCD);
+            int pageNumber = (page ?? 1);          
+            return View(links.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult SachTheoNhaXuatBan(int id)
         {
