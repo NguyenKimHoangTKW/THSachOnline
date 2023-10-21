@@ -33,7 +33,7 @@
             <div class="form-group">
                 <p><strong>Tình trang giao hàng</strong></p>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.TinhTrangGiaoHang, new { htmlAttributes = new { @class = "form-control" } })
+                    <input type="number" class="form-control" name="TinhTrangGiaoHang" min="1" required>
                     @Html.ValidationMessageFor(model => model.TinhTrangGiaoHang, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -41,7 +41,7 @@
             <div class="form-group">
                 <p><strong>Ngày đặt</strong></p>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control" } })
+                    <input type="number" class="form-control" name="NgayDat" min="1" required>
                     @Html.ValidationMessageFor(model => model.NgayDat, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <div class="form-group">
                 <p><strong>Ngày giao</strong></p>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control" } })
+                    <input type="number" class="form-control" name="NgayGiao" min="1" required>
                     @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
                 </div>
             </div>

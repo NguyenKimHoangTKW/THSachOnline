@@ -21,7 +21,7 @@
                                 <tr>
                                     <td>Tên chủ đề:</td>
                                     <td>
-                                        @Html.EditorFor(model => model.TenChuDe, new { htmlAttributes = new { @class = "form-control" } })
+                                        <input type="text" class="form-control" name="TenChuDe" min="1" required>
                                         @Html.ValidationMessageFor(model => model.TenChuDe, "", new { @class = "text-danger" })
                                     </td>
                                 </tr>
