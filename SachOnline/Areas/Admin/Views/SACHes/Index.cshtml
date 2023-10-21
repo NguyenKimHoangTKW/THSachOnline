@@ -1,83 +1,70 @@
-﻿@model IEnumerable<SachOnline.Models.SACH>
-
+﻿@model PagedList.IPagedList<SachOnline.Models.SACH>
+@using PagedList.Mvc;
 @{
-    Layout = null;
+    ViewBag.Title = "Admin - Sách";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+<a href="@Url.Action("Create","SACHes")">
+    <button class="btn btn-secondary btn-tone m-r-5">Thêm mới Sách </button>
+</a>
+<div class="table-responsive" style="margin:0px auto;">
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TenSach)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MoTa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AnhBia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgayCapNhat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoLuongBan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GiaBan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CHUDE.TenChuDe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NHAXUATBAN.TenNXB)
-            </th>
-            <th></th>
+            <th scope="col">STT</th>
+            <th scope="col">Tên sách</th>
+            <th scope="col">Ngày cập nhật</th>
+            <th scope="col">Số lượng bán</th>
+            <th scope="col">Giá bán</th>
+            <th scope="col">Tên chủ đề</th>
+            <th scope="col">Tên nhà xuất bản</th>
+            <th scope="col">#</th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenSach)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoTa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnhBia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayCapNhat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLuongBan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GiaBan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NHAXUATBAN.TenNXB)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.MaSach }) |
-                @Html.ActionLink("Details", "Details", new { id=item.MaSach }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.MaSach })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr>
+                <td>#@i</td>
+                <td>
+                    <img class="img-fluid rounded" src="~/Style/Images/@item.AnhBia" style="max-width: 60px" alt="">
+                    @item.TenSach
+                </td>
+                <td>@string.Format("{0:dd-MM-yyyy}", item.NgayCapNhat)</td>
+                <td>@item.SoLuongBan</td>
+                <td>@item.GiaBan</td>
+                <td>@item.CHUDE.TenChuDe</td>
+                <td>@item.NHAXUATBAN.TenNXB</td>
+                <td>
+                    <a href="/Admin/SACHes/Details?id=@item.MaSach">
+                        <button class="btn btn-info btn-tone m-r-5">Xem</button>|
+                    </a>
+                    <a href="/Admin/SACHes/Edit?id=@item.MaSach">
+                        <button class="btn btn-success btn-tone m-r-5">Sửa</button>|
+                    </a>
+                    <a href="/Admin/SACHes/Delete?id=@item.MaSach">
+                        <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                    </a>
+
+
+                </td>
+            </tr>
+        }
+
     </table>
-</body>
-</html>
+</div>
+<!-- Thêm mã phân trang -->
+<br />
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", "SACHes", new { area= "Admin", page = page }))
+</div>
+<style>
+    .MenuTrang {
+        display: inline;
+        text-align: center;
+    }
+</style>
+<!-- Kết thúc -->

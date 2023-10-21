@@ -128,5 +128,11 @@ namespace SachOnline.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult OrderDetail(int? id)
+        {
+            var lstorderdetail = db.CHITIETDATHANGs.Where(o => o.MaDonHang == id).ToList();
+            return View(lstorderdetail);
+        }
     }
 }

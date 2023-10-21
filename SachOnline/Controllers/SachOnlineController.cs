@@ -15,10 +15,12 @@ namespace SachOnline.Controllers
         private SachOnlineEntities db = new SachOnlineEntities();
         // GET: SachOnline
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var lisSachMoi = LaySachMoi(6);
-            return View(lisSachMoi);
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            var lisSachMoi = db.SACHes.ToList();
+            return View(lisSachMoi.ToPagedList(pageNumber,pageSize));
         }
         private List<SACH> LaySachMoi(int count)
         {
@@ -47,6 +49,7 @@ namespace SachOnline.Controllers
         }
         public ActionResult SachTheoChuDe(int iMaCD, int? page)
         {
+            ViewBag.MaCD = iMaCD;
             int pageSize = 3;
             var sach = (from l in db.SACHes
                          where l.MaCD == iMaCD
@@ -56,6 +59,7 @@ namespace SachOnline.Controllers
         }
         public ActionResult SachTheoNhaXuatBan(int iMaNXB, int? page)
         {
+            ViewBag.MaNXB = iMaNXB;
             int pageSize = 3;
             var nxb = (from s in db.SACHes
                        where s.MaNXB == iMaNXB

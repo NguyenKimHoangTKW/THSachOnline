@@ -62,6 +62,7 @@
             background-color: #3e8e41;
         }
     </style>
+    @Styles.Render("~/Content/AdminStyle/css")
 </head>
 <body>
     <!--Nav-->
@@ -74,13 +75,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">SachOnline</a>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">Trang chủ</a>
                 <a class="navbar-brand" href="@Url.Action("Index", "SACHes")">Quản lý sách</a>
                 <a class="navbar-brand" href="@Url.Action("Index", "ChuDe")">Quản lý chủ đề</a>
                 <a class="navbar-brand" href="@Url.Action("Index", "NhaXuatBan")">Quản lý nhà xuất bản</a>
                 <a class="navbar-brand" href="@Url.Action("Index", "KhachHang")">Quản lý khách hàng</a>
                 <a class="navbar-brand" href="@Url.Action("Index", "DonHang")">Quản lý đơn hàng</a>
-
+                <a class="navbar-brand" href="@Url.Action("Logout", "Account", new {area =""})">Đăng xuất</a>
             </div>
 
             <div class="collapse navbar-collapse" id="navbar1">

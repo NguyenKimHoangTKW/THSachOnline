@@ -1,53 +1,50 @@
 ﻿@model IEnumerable<SachOnline.Models.NHAXUATBAN>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Admin - Nhà xuất bản";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+<a href="@Url.Action("Create","NhaXuatBan")">
+    <button class="btn btn-secondary btn-tone m-r-5">Thêm mới nhà xuất bản </button>
+</a>
+<div class="table-responsive" style="margin:0px auto;">
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TenNXB)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiaChi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DienThoai)
-            </th>
-            <th></th>
+            <th scope="col">STT</th>
+            <th scope="col">Tên nhà xuất bản</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">#</th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenNXB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DienThoai)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.MaNXB }) |
-                @Html.ActionLink("Details", "Details", new { id=item.MaNXB }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.MaNXB })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr>
+                <td>#@i</td>
+                <td>@item.TenNXB</td>
+                <td>@item.DiaChi</td>
+                <td>@item.DienThoai</td>
+                <td>
+                    <a href="/Admin/NhaXuatBan/Details?id=@item.MaNXB">
+                        <button class="btn btn-info btn-tone m-r-5">Xem chi tiết </button>|
+                    </a>
+                    <a href="/Admin/NhaXuatBan/Edit?id=@item.MaNXB">
+                        <button class="btn btn-success btn-tone m-r-5">Sửa chủ đề</button>|
+                    </a>
+                    <a href="/Admin/NhaXuatBan/Delete?id=@item.MaNXB">
+                        <button class="btn btn-danger btn-tone m-r-5">Xóa chủ đề</button>
+                    </a>
+
+
+                </td>
+            </tr>
+        }
+
     </table>
-</body>
-</html>
+</div>
+
+

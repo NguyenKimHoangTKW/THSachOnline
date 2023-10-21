@@ -103,7 +103,7 @@ namespace SachOnline.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult DangNhap(FormCollection collection)
+        public ActionResult DangNhap(FormCollection collection,string url)
         {
             var sTenDN = collection["TenDN"];
             var sMatKhau = collection["MatKhau"];
@@ -118,11 +118,18 @@ namespace SachOnline.Controllers
             else
             {
                 KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == sTenDN && n.MatKhau == sMatKhau);
+                ADMIN admin = db.ADMINs.SingleOrDefault(n => n.TenDN == sTenDN && n.MatKhau == sMatKhau);
                 if (kh != null)
                 {
                     ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
                     Session["TaiKhoan"] = kh;
-                    return RedirectToAction("GioHang","GioHang");
+                    return Redirect(url);
+                }
+                else if (admin != null)
+                {
+                    ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
+                    Session["Admin"] = admin;
+                    return RedirectToAction("Index", "Home", new {area = "Admin"});
                 }
                 else
                 {

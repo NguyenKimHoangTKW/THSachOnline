@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using SachOnline.Models;
 
 namespace SachOnline.Areas.Admin.Controllers
@@ -15,9 +16,12 @@ namespace SachOnline.Areas.Admin.Controllers
         private SachOnlineEntities db = new SachOnlineEntities();
 
         // GET: Admin/KhachHang
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.KHACHHANGs.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var kh = db.KHACHHANGs.OrderBy(k => k.MaKH).ToList();
+            return View(kh.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/KhachHang/Details/5

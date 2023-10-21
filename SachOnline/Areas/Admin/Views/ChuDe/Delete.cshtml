@@ -1,43 +1,42 @@
 ﻿@model SachOnline.Models.CHUDE
 
 @{
-    Layout = null;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
-@Styles.Render("~/Content/AdminStyle/css")
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
 
-</head>
-<body>
 
-    <div>
-        <hr />
-        <h4>XÓA CHỦ ĐỀ</h4>
+<div class="table-responsive" style="margin:0px auto;">
+    <table class="table">
+        <h4 class="card-title" style="text-align:center; font-size:25px; color:red;">Xóa chủ đề @Model.TenChuDe</h4>
+        <tr>
 
-        <dl class="dl-horizontal">
-            <dt>
-                TÊN CHỦ ĐỀ
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.TenChuDe)
-            </dd>
+            <th scope="col">Tên chủ đề</th>
+            <th scope="col">#</th>
+        </tr>
 
-        </dl>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+        <tr>
+            <td>@Model.TenChuDe</td>
 
-            <div class="form-actions no-color">
+            <td>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-                <input type="submit" value="Delete" class="btn btn-success btn-tone m-r-5" />
-                <button class="btn btn-success btn-tone m-r-5"> @Html.ActionLink("Back to List", "Index")</button>
+                    <div class="form-actions no-color">
 
-            </div>
-        }
-    </div>
-</body>
-</html>
+                        <input type="submit" value="Delete" class="btn btn-success btn-tone m-r-5" />
+                        <button class="btn btn-success btn-tone m-r-5"> @Html.ActionLink("Back to List", "Index")</button>
+
+                    </div>
+                }
+            </td>
+        </tr>
+
+
+    </table>
+</div>
+
+
+

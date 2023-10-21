@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SachOnline.Models;
-
+using PagedList;
 namespace SachOnline.Areas.Admin.Controllers
 {
     public class SACHesController : Controller
@@ -15,10 +15,12 @@ namespace SachOnline.Areas.Admin.Controllers
         private SachOnlineEntities db = new SachOnlineEntities();
 
         // GET: Admin/SACHes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var sACHes = db.SACHes.Include(s => s.CHUDE).Include(s => s.NHAXUATBAN);
-            return View(sACHes.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var sACHes = db.SACHes.Include(s => s.CHUDE).Include(s => s.NHAXUATBAN).OrderBy(s => s.MaSach);
+            return View(sACHes.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/SACHes/Details/5
