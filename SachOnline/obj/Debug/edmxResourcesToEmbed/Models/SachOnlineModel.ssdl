@@ -68,12 +68,22 @@
     <Property Name="MaSach" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenSach" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="MoTa" Type="ntext" />
-    <Property Name="AnhBia" Type="varchar" MaxLength="50" />
+    <Property Name="AnhBia" Type="ntext" />
     <Property Name="NgayCapNhat" Type="smalldatetime" />
     <Property Name="SoLuongBan" Type="int" />
     <Property Name="GiaBan" Type="money" />
     <Property Name="MaCD" Type="int" />
     <Property Name="MaNXB" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="TACGIA">
     <Key>
@@ -187,6 +197,7 @@
     <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NHAXUATBAN" EntityType="Self.NHAXUATBAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SACH" EntityType="Self.SACH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TACGIA" EntityType="Self.TACGIA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VIETSACH" EntityType="Self.VIETSACH" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CTDH_DDH" Association="Self.FK_CTDH_DDH">

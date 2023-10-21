@@ -7,10 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using SachOnline.App_Start;
 using SachOnline.Models;
 
 namespace SachOnline.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class KhachHangController : Controller
     {
         private SachOnlineEntities db = new SachOnlineEntities();
@@ -113,10 +115,19 @@ namespace SachOnline.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
             KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
-            db.KHACHHANGs.Remove(kHACHHANG);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if(db.DONDATHANGs.Any(d => d.MaKH == kHACHHANG.MaKH))
+            {
+                ViewBag.ThongBao = "Không thể xóa khách hàng vì khách tồn tại trong Đơn đặt hàng, nếu muốn xóa phải xóa hết đơn đăt hàng liên quan";
+            }
+            else
+            {
+                db.KHACHHANGs.Remove(kHACHHANG);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(kHACHHANG);
         }
 
         protected override void Dispose(bool disposing)

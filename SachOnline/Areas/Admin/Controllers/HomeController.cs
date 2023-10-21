@@ -1,4 +1,5 @@
-﻿using SachOnline.Models;
+﻿using SachOnline.App_Start;
+using SachOnline.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,10 @@ using System.Web.Mvc;
 
 namespace SachOnline.Areas.Admin.Controllers
 {
+    [AdminAuthorize]    
     public class HomeController : Controller
     {
+       
         private SachOnlineEntities db = new SachOnlineEntities();
         // GET: Admin/Home
         public ActionResult Index()

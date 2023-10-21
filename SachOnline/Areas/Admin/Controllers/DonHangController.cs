@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SachOnline.App_Start;
 using SachOnline.Models;
 
 namespace SachOnline.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class DonHangController : Controller
     {
         private SachOnlineEntities db = new SachOnlineEntities();

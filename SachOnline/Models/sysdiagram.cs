@@ -12,13 +12,12 @@ namespace SachOnline.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ADMIN
+    public partial class sysdiagram
     {
-        public int MaAd { get; set; }
-        public string HoTen { get; set; }
-        public string DienThoai { get; set; }
-        public string TenDN { get; set; }
-        public string MatKhau { get; set; }
-        public Nullable<int> Quyen { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

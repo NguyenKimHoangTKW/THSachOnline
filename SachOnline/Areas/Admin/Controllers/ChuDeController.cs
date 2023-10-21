@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SachOnline.App_Start;
 using SachOnline.Models;
 
 namespace SachOnline.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class ChuDeController : Controller
     {
         private SachOnlineEntities db = new SachOnlineEntities();
@@ -110,9 +112,17 @@ namespace SachOnline.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CHUDE cHUDE = db.CHUDEs.Find(id);
-            db.CHUDEs.Remove(cHUDE);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if(db.SACHes.Any(s => s.MaCD == cHUDE.MaCD))
+            {
+                ViewBag.ThongBao = "Không thể xóa chủ đề vì tồn tại bên Sách,nếu muốn xóa phải xóa Sách có chủ đề tương ứng";
+            }
+            else
+            {
+                db.CHUDEs.Remove(cHUDE);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(cHUDE);
         }
 
         protected override void Dispose(bool disposing)

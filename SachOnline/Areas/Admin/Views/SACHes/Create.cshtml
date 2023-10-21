@@ -1,99 +1,81 @@
 ﻿@model SachOnline.Models.SACH
 
 @{
-    Layout = null;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-    @using (Html.BeginForm()) 
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>SACH</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.TenSach, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TenSach, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TenSach, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.AnhBia, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.AnhBia, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.NgayCapNhat, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NgayCapNhat, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NgayCapNhat, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.SoLuongBan, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SoLuongBan, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SoLuongBan, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.GiaBan, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.MaCD, "MaCD", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("MaCD", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.MaCD, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.MaNXB, "MaNXB", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("MaNXB", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.MaNXB, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+@using (Html.BeginForm("Create", "SACHes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="card" style="width: 1530px; margin-top:50px">
+        <div class="card-body" style="margin-top: 90px">
+            <h4>Thêm mới sách</h4>
+            <h2 style="color:red">@ViewBag.ThongBao</h2>
+            <div class="m-t-15">
+                <form id="form-validation">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Tên Sách*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="TenSach" required>
+                            @Html.ValidationMessageFor(m => m.TenSach, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Mô tả*</label>
+                        <div class="col-md-5">
+                            <textarea type="text" class="form-control" name="MoTa" id="mota" required></textarea>
+                            @Html.ValidationMessageFor(m => m.MoTa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Ảnh sách*</label>
+                        <div class="col-md-5">
+                            <input type="file" class="form-control" name="AnhBia" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Ngày cập nhật*</label>
+                        <div class="col-md-5">
+                            <input type="date" class="form-control" name="NgayCapNhat" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Số lượng bán*</label>
+                        <div class="col-md-5">
+                            <input type="number" class="form-control" name="SoLuongBan" min="1" required>
+                            @Html.ValidationMessageFor(m => m.SoLuongBan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Giá sách*</label>
+                        <div class="col-md-5">
+                            <input type="number" class="form-control" name="GiaBan" min="1" required>
+                            @Html.ValidationMessageFor(m => m.GiaBan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Danh mục chủ đề sách*</label>
+                        <div class="col-md-5">
+                            @Html.DropDownList("MaCD", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Danh mục nhà xuất bản*</label>
+                        <div class="col-md-5">
+                            @Html.DropDownList("MaNXB", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group text-left">
+                        <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+        <div>
+            @Html.ActionLink("Quay về danh sách sách", "Index")
+        </div>
     </div>
-</body>
-</html>
+}
+<script>
+    CKEDITOR.replace('mota');
+</script>

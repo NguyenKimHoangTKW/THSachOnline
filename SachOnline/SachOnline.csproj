@@ -132,6 +132,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AdminAuthorize.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -184,6 +185,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SachOnlineModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>SachOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TACGIA.cs">
       <DependentUpon>SachOnlineModel.tt</DependentUpon>
@@ -645,6 +649,8 @@
     <Content Include="Style\Images\100X125.gif" />
     <Content Include="Style\Images\130318.jpg" />
     <Content Include="Style\Images\130499.jpg" />
+    <Content Include="Style\Images\286782491_1213440742528519_2369363639708112657_n-20231021144450433.jpg" />
+    <Content Include="Style\Images\286782491_1213440742528519_2369363639708112657_n-20231021144836628.jpg" />
     <Content Include="Style\Images\Cancel.jpg" />
     <Content Include="Style\Images\Delete.jpg" />
     <Content Include="Style\Images\Edit.png" />
@@ -689,6 +695,7 @@
     <Content Include="Style\Images\thu1.jpg" />
     <Content Include="Style\Images\TiengAnh01.jpg" />
     <Content Include="Style\Images\xehang.gif" />
+    <Content Include="Style\Images\z4804241946620_72c6c776597dd8828e3a99e468496bf5-20231021145022231.jpg" />
     <Content Include="Style\js\bootstrap.js" />
     <Content Include="Style\js\jquery-1.11.3.min.js" />
     <Content Include="Web.config" />
@@ -719,6 +726,9 @@
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
+    <Content Include="Views\User\DangKy.cshtml" />
+    <Content Include="Views\User\DangNhap.cshtml" />
+    <Content Include="Views\Account\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

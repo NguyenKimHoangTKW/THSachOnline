@@ -8,8 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using SachOnline.Models;
 using PagedList;
+using System.IO;
+using SachOnline.App_Start;
+
 namespace SachOnline.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class SACHesController : Controller
     {
         private SachOnlineEntities db = new SachOnlineEntities();
@@ -19,7 +23,7 @@ namespace SachOnline.Areas.Admin.Controllers
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var sACHes = db.SACHes.Include(s => s.CHUDE).Include(s => s.NHAXUATBAN).OrderBy(s => s.MaSach);
+            var sACHes = db.SACHes.Include(s => s.CHUDE).Include(s => s.NHAXUATBAN).OrderBy(s => s.MaSach).OrderByDescending(s => s.NgayCapNhat);
             return View(sACHes.ToPagedList(pageNumber, pageSize));
         }
 
@@ -51,13 +55,27 @@ namespace SachOnline.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaSach,TenSach,MoTa,AnhBia,NgayCapNhat,SoLuongBan,GiaBan,MaCD,MaNXB")] SACH sACH)
+        [ValidateInput(false)]
+        public ActionResult Create(SACH sACH, HttpPostedFileBase AnhBia)
         {
             if (ModelState.IsValid)
             {
-                db.SACHes.Add(sACH);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (AnhBia != null && AnhBia.ContentLength > 0)
+                {
+                    string _Head = Path.GetFileNameWithoutExtension(AnhBia.FileName);
+                    string _Tail = Path.GetExtension(AnhBia.FileName);
+                    string fullLink = _Head + "-" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + _Tail;
+                    string _path = Path.Combine(Server.MapPath("~/Style/Images"), fullLink);
+                    AnhBia.SaveAs(_path);
+                    sACH.AnhBia = fullLink;
+                    db.SACHes.Add(sACH);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Vui lòng chọn một tệp ảnh.");
+                }
             }
 
             ViewBag.MaCD = new SelectList(db.CHUDEs, "MaCD", "TenChuDe", sACH.MaCD);
@@ -87,12 +105,38 @@ namespace SachOnline.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSach,TenSach,MoTa,AnhBia,NgayCapNhat,SoLuongBan,GiaBan,MaCD,MaNXB")] SACH sACH)
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "MaSach,TenSach,MoTa,AnhBia,NgayCapNhat,SoLuongBan,GiaBan,MaCD,MaNXB")] SACH sACH, HttpPostedFileBase AnhBia, FormCollection form)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sACH).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    if (AnhBia != null)
+                    {
+                        string _Head = Path.GetFileNameWithoutExtension(AnhBia.FileName);
+                        string _Tail = Path.GetExtension(AnhBia.FileName);
+                        string fullLink = _Head + "-" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + _Tail;
+                        string _path = Path.Combine(Server.MapPath("~/Style/Images"), fullLink);
+                        AnhBia.SaveAs(_path);
+                        sACH.AnhBia = fullLink;
+                        _path = Path.Combine(Server.MapPath("~/Style/Images"), form["oldimage"]);
+
+                        if (System.IO.File.Exists(_path))
+                            System.IO.File.Delete(_path);
+
+                    }
+                    else
+                    sACH.AnhBia = form["oldimage"];
+                    db.Entry(sACH).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                catch
+                {
+                    ViewBag.Message = "không thành công!!";
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.MaCD = new SelectList(db.CHUDEs, "MaCD", "TenChuDe", sACH.MaCD);
@@ -121,9 +165,21 @@ namespace SachOnline.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             SACH sACH = db.SACHes.Find(id);
-            db.SACHes.Remove(sACH);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if(db.CHITIETDATHANGs.Any(c => c.MaSach == sACH.MaSach))
+            {
+                ViewBag.ThongBao = "Không thể xóa sách này vì tồn tại khóa ngoại bên Chi Tiết đơn hàng.Nếu muốn xóa phải xóa hết Chi tiết đơn hàng liên quan đến sách này";
+            }
+            else if (db.VIETSACHes.Any(v => v.MaSach == sACH.MaSach))
+            {
+                ViewBag.ThongBao = "Không thể xóa sách này vì tồn tại khóa ngoại bên Người viết sách.Nếu muốn xóa phải xóa hết Người viết sách liên quan đến sách này";
+            }
+            else
+            {
+                db.SACHes.Remove(sACH);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(sACH);
         }
 
         protected override void Dispose(bool disposing)

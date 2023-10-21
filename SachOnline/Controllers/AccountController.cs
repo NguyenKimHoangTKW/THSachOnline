@@ -123,7 +123,7 @@ namespace SachOnline.Controllers
                 {
                     ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
                     Session["TaiKhoan"] = kh;
-                    return Redirect(url);
+                    return RedirectToAction("Index","SachOnline");
                 }
                 else if (admin != null)
                 {
@@ -143,6 +143,11 @@ namespace SachOnline.Controllers
         {
             Session.Clear();
             return RedirectToAction("Index","SachOnline");
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
     }
 }

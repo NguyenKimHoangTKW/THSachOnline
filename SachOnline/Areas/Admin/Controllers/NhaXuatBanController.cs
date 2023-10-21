@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SachOnline.App_Start;
 using SachOnline.Models;
 
 namespace SachOnline.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class NhaXuatBanController : Controller
     {
         private SachOnlineEntities db = new SachOnlineEntities();
@@ -110,9 +112,17 @@ namespace SachOnline.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             NHAXUATBAN nHAXUATBAN = db.NHAXUATBANs.Find(id);
-            db.NHAXUATBANs.Remove(nHAXUATBAN);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if(db.SACHes.Any(s => s.MaNXB == nHAXUATBAN.MaNXB))
+            {
+                ViewBag.ThongBao = "Không thể xóa Nhà xuất bản vì tồn tại bên Sách,nếu muốn xóa phải xóa Sách có Nhà xuất bản tương ứng";
+            }
+            else
+            {
+                db.NHAXUATBANs.Remove(nHAXUATBAN);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(nHAXUATBAN);
         }
 
         protected override void Dispose(bool disposing)
