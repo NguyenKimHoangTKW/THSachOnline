@@ -15,6 +15,7 @@
 
     <div>
         <h4>XÓA ĐƠN HÀNG</h4>
+        <h2>@ViewBag.ThongBao</h2>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -63,8 +64,8 @@
             @Html.AntiForgeryToken()
 
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-primary btn-tone m-r-5" /> 
-                <button  class="btn btn-primary btn-tone m-r-5"> @Html.ActionLink("Back to List", "Index")</button>
+                <input type="submit" value="Delete" class="btn btn-primary btn-tone m-r-5" />
+                <button class="btn btn-primary btn-tone m-r-5"> @Html.ActionLink("Back to List", "Index")</button>
             </div>
         }
     </div>

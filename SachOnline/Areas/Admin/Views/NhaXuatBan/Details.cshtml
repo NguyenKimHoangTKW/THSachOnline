@@ -1,7 +1,7 @@
 ﻿@model SachOnline.Models.NHAXUATBAN
 
 @{
-    Layout = null;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,39 +12,45 @@
     <title>Details</title>
 </head>
 <body>
-    <div>
-        <h4>NHAXUATBAN</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.TenNXB)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.TenNXB)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.DiaChi)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DiaChi)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.DienThoai)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DienThoai)
-            </dd>
-    
-        </dl>
+    <div class="table-responsive" style="margin:0px auto;">
+        <table class="table">
+            <h4><strong>XEM CHI TIẾT NHÀ XUẤT BẢN</strong></h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên nhà xuất bản
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenNXB)
+                </dd>
+
+                <dt>
+                    Địa chỉ
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DiaChi)
+                </dd>
+
+                <dt>
+                    Số điện thoại
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DienThoai)
+                </dd>
+
+            </dl>
+            </table>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.MaNXB }) |
-        @Html.ActionLink("Back to List", "Index")
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.MaNXB })
+        </button>
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Back to List", "Index")
+            </button>
     </p>
 </body>
 </html>

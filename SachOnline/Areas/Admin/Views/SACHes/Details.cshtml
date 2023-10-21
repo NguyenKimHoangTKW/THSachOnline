@@ -1,7 +1,7 @@
 ﻿@model SachOnline.Models.SACH
 
 @{
-    Layout = null;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,79 +12,82 @@
     <title>Details</title>
 </head>
 <body>
-    <div>
-        <h4>SACH</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.TenSach)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.TenSach)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.MoTa)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.MoTa)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.AnhBia)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.AnhBia)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.NgayCapNhat)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.NgayCapNhat)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.SoLuongBan)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.SoLuongBan)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.GiaBan)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.GiaBan)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.CHUDE.TenChuDe)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.CHUDE.TenChuDe)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.NHAXUATBAN.TenNXB)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.NHAXUATBAN.TenNXB)
-            </dd>
-    
-        </dl>
+    <div class="table-responsive" style="margin:0px auto;">
+        <table class="table">
+            <h4><strong>XÓA SÁCH</strong></h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên sách
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenSach)
+                </dd>
+
+                <dt>
+                    Ảnh bìa
+                </dt>
+
+                <dd>
+                    <img class="img-fluid rounded" src="~/Style/Images/@Html.DisplayFor(model => model.AnhBia)" style="max-width: 60px" alt="">
+                </dd>
+
+
+                <dt>
+                    Ngày cập nhật
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NgayCapNhat)
+                </dd>
+
+                <dt>
+                    Số lượng bán
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SoLuongBan)
+                </dd>
+
+                <dt>
+                    Giá bán
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.GiaBan)
+                </dd>
+
+                <dt>
+                    Tên chủ đề
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CHUDE.TenChuDe)
+                </dd>
+
+                <dt>
+                    Tên nhà xuất bản
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NHAXUATBAN.TenNXB)
+                </dd>
+                <dt>
+                    Mô tả
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MoTa)
+                </dd>
+
+            </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.MaSach }) |
+        <button class="btn btn-info btn-tone m-r-5">@Html.ActionLink("Edit", "Edit", new { id = Model.MaSach }) </button>
+        <button class="btn btn-info btn-tone m-r-5">
         @Html.ActionLink("Back to List", "Index")
+            </button>
     </p>
 </body>
 </html>

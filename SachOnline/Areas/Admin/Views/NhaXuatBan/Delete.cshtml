@@ -1,7 +1,7 @@
 ﻿@model SachOnline.Models.NHAXUATBAN
 
 @{
-    Layout = null;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,45 +12,50 @@
     <title>Delete</title>
 </head>
 <body>
-    <h3>Are you sure you want to delete this?</h3>
-    <div>
-        <h4>NHAXUATBAN</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.TenNXB)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.TenNXB)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.DiaChi)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DiaChi)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.DienThoai)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DienThoai)
-            </dd>
-    
-        </dl>
-    
-        @using (Html.BeginForm()) {
-            @Html.AntiForgeryToken()
-    
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
+    <div class="table-responsive" style="margin:0px auto;">
+        <table class="table">
+            <h4><strong>XÓA THÔNG TIN NHÀ XUẤT BẢN</strong></h4>
+            <h2>@ViewBag.ThongBao</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                   Tên nhà xuất bản
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenNXB)
+                </dd>
+
+                <dt>
+                 Địa chỉ
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DiaChi)
+                </dd>
+
+                <dt>
+                    Số điện thoại
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DienThoai)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete"class="btn btn-primary btn-tone m-r-5"/>
+            <button class="btn btn-primary btn-tone m-r-5">
                 @Html.ActionLink("Back to List", "Index")
-            </div>
-        }
+                </button>
+        </div>
+            }
+            </table>
     </div>
 </body>
 </html>
