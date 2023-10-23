@@ -1,0 +1,73 @@
+﻿@model SachOnline.Models.DONDATHANG
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@Styles.Render("~/Content/AdminStyle/css")
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+
+    <div>
+        <h4>XÓA ĐƠN HÀNG</h4>
+        <h2>@ViewBag.ThongBao</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Đã thanh toán
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DaThanhToan)
+            </dd>
+
+            <dt>
+                Tình trạng giao hàng
+
+            <dd>
+                @Html.DisplayFor(model => model.TinhTrangGiaoHang)
+            </dd>
+
+            <dt>
+                Ngày đặt
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NgayDat)
+            </dd>
+
+            <dt>
+                Ngày giao
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NgayGiao)
+            </dd>
+
+            <dt>
+                Tên khách hàng
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.KHACHHANG.HoTen)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-primary btn-tone m-r-5" />
+                <button class="btn btn-primary btn-tone m-r-5"> @Html.ActionLink("Back to List", "Index")</button>
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿@model SachOnline.Models.SACH
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <div class="table-responsive" style="margin:0px auto;">
+        <table class="table">
+            <h4><strong>XÓA SÁCH</strong></h4>
+            <h2>@ViewBag.ThongBao</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên sách
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenSach)
+                </dd>
+
+
+
+                <dt>
+                    Ảnh bìa
+                </dt>
+
+                <dd>
+                    <img class="img-fluid rounded" src="~/Style/Images/@Html.DisplayFor(model => model.AnhBia)" style="max-width: 60px" alt="">
+                </dd>
+
+
+                <dt>
+                    Ngày cập nhật
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NgayCapNhat)
+                </dd>
+
+                <dt>
+                    Số lượng bán
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SoLuongBan)
+                </dd>
+
+                <dt>
+                    Giá bán
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.GiaBan)
+                </dd>
+
+                <dt>
+                    Tên chủ đề
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CHUDE.TenChuDe)
+                </dd>
+
+                <dt>
+                    Tên nhà xuất bản
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NHAXUATBAN.TenNXB)
+                </dd>
+                <dt>
+                    Mô tả
+                </dt>
+
+                <dd>
+                   @Html.Raw(Model.MoTa)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input class="btn btn-info btn-tone m-r-5" type="submit" value="Delete" />
+                    <button class="btn btn-info btn-tone m-r-5">
+                        @Html.ActionLink("Quay lại trang trước", "Index")
+                    </button>
+                </div>
+            }
+        </table>
+    </div>
+</body>
+</html>

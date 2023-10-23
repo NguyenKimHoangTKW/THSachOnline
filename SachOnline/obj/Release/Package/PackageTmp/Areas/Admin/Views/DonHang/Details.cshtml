@@ -1,0 +1,70 @@
+﻿@model SachOnline.Models.DONDATHANG
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@Styles.Render("~/Content/AdminStyle/css")
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>DONDATHANG</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Đã thanh toán
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DaThanhToan)
+            </dd>
+    
+            <dt>
+               Tình trạng giao hàng
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TinhTrangGiaoHang)
+            </dd>
+    
+            <dt>
+                Ngày đặt
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NgayDat)
+            </dd>
+    
+            <dt>
+               Ngày giao
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NgayGiao)
+            </dd>
+    
+            <dt>
+                Tên khách hàng
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.KHACHHANG.HoTen)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.MaDonHang })
+        </button>
+    <button class="btn btn-primary btn-tone m-r-5">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
+    </p>
+</body>
+</html>

@@ -1,0 +1,94 @@
+﻿@model SachOnline.Models.KHACHHANG
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body>
+    <hr />
+    <div class="table-responsive" style="margin:0px auto;">
+        <table class="table">
+            <h4><strong>XÓA KHÁCH HÀNG</strong></h4>
+            <h2>@ViewBag.ThongBao</h2>
+
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên khách hàng
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.HoTen)
+                </dd>
+
+                <dt>
+                    Tên tài khoản
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TaiKhoan)
+                </dd>
+
+                <dt>
+                    Mật khẩu
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MatKhau)
+                </dd>
+
+                <dt>
+                    Email
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    Địa chỉ
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DiaChi)
+                </dd>
+
+                <dt>
+                    Số điện thoại
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DienThoai)
+                </dd>
+
+                <dt>
+                    Ngày sinh
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NgaySinh)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-primary btn-tone m-r-5" />
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        @Html.ActionLink("Quay lại trang trước", "Index")
+                    </button>
+                </div>
+            }
+            </table>
+    </div>
+</body>
+</html>

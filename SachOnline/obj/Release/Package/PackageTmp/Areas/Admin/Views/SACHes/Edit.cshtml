@@ -1,0 +1,87 @@
+﻿@model SachOnline.Models.SACH
+
+@{
+    ViewBag.Title = "Admin - Sửa sách";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+@using (Html.BeginForm("Edit", "SACHes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MaSach)
+    <div class="card" style="width: 1530px; margin-top:50px">
+        <div class="card-body" style="margin-top: 90px">
+            <h4>Thêm mới sách</h4>
+            <h2 style="color:red">@ViewBag.ThongBao</h2>
+            <div class="m-t-15">
+                <form id="form-validation">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Tên Sách*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="TenSach" value="@Model.TenSach">
+                            @Html.ValidationMessageFor(m => m.TenSach, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Mô tả*</label>
+                        <div class="col-md-5">
+                            <textarea type="text" class="form-control" name="MoTa">@Model.MoTa</textarea>
+                            @Html.ValidationMessageFor(m => m.MoTa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Ảnh sách*</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.AnhBia, null, new { type = "file", @class = "form-control" })
+                            <img src="~/Style/Images/@Model.AnhBia" />
+                            @Html.Hidden("oldimage", @Model.AnhBia)
+                            @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Số lượng bán*</label>
+                        <div class="col-md-5">
+                            <input type="number" class="form-control" name="SoLuongBan" min="1" value="@Model.SoLuongBan">
+                            @Html.ValidationMessageFor(m => m.SoLuongBan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Ngày cập nhật*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="NgayCapNhat" min="1" value="@string.Format("{0:yyyy-MM-dd}",Model.NgayCapNhat)">
+                            @Html.ValidationMessageFor(m => m.GiaBan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Giá Bán*</label>
+                        <div class="col-md-5">
+                            <input type="number" class="form-control" name="GiaBan" min="1" value="@Model.GiaBan">
+                            @Html.ValidationMessageFor(m => m.GiaBan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Danh mục chủ đề sách*</label>
+                        <div class="col-md-5">
+                            @Html.DropDownList("MaCD", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Danh mục nhà xuất bản*</label>
+                        <div class="col-md-5">
+                            @Html.DropDownList("MaNXB", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group text-left">
+                        <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Quay về danh sách sách", "Index")
+        </div>
+    </div>
+}
+<script>
+    CKEDITOR.replace('MoTa');
+</script>

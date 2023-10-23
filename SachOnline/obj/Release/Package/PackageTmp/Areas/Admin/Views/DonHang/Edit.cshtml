@@ -1,0 +1,79 @@
+﻿@model SachOnline.Models.DONDATHANG
+
+@{
+
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@Styles.Render("~/Content/AdminStyle/css")
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>ĐƠN ĐẶT HÀNG</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MaDonHang)
+
+            <div class="form-group">
+                <p>Đã thanh toán</p>
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.DaThanhToan)
+                        @Html.ValidationMessageFor(model => model.DaThanhToan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Tình trạng giao hàng</p>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="TinhTrangGiaoHang" min="1" required value="@Model.TinhTrangGiaoHang">
+                    @Html.ValidationMessageFor(model => model.TinhTrangGiaoHang, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Ngày đặt</p>
+                <div class="col-md-10">
+                    <input type="date" class="form-control" name="NgayDat" min="1" required value="@Model.NgayDat">
+                    @Html.ValidationMessageFor(model => model.NgayDat, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Ngày giao</p>
+                <div class="col-md-10">
+                    <input type="date" class="form-control" name="NgayGiao" min="1" required value="@Model.NgayGiao">
+                    @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Tên khách hàng</p>
+                <div class="col-md-10">
+                    @Html.DropDownList("MaKH", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary btn-tone m-r-5" />
+                    <button class="btn btn-primary btn-tone m-r-5"> @Html.ActionLink("Back to List", "Index")</button>
+                </div>
+            </div>
+        </div>
+    }
+
+</body>
+</html>

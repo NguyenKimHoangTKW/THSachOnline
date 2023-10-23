@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SachOnline.Models.CHITIETDATHANG>
+
+@{
+    ViewBag.Title = "Admin - Chi tiết đơn đặt hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+<div class="table-responsive" style="margin:0px auto;">
+    @if (Model.Any())
+    {
+        <h4 class="card-title" style="text-align:center; font-size:25px; color:red;">Thông tin đơn hàng của @Model.FirstOrDefault().DONDATHANG.KHACHHANG.HoTen</h4>
+    }
+
+    <table class="table">
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên sách</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Đơn giá</th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr>
+                <td>#@i</td>
+                <td>
+                    <img class="img-fluid rounded" src="~/Style/Images/@item.SACH.AnhBia" style="max-width: 60px" alt="">
+                    @item.SACH.TenSach
+                </td>
+                <td>@item.SoLuong</td>
+                <td>@string.Format("{0:#,0} VNĐ", item.DonGia)</td>
+
+            </tr>
+        }
+        <a href="@Url.Action("Index","DonHang")">
+            <button class="btn btn-info btn-tone m-r-5">Quay về danh sách đơn hàng</button>
+        </a>
+    </table>
+</div>

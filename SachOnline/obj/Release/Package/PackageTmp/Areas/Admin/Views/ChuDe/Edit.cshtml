@@ -1,0 +1,46 @@
+﻿@model SachOnline.Models.CHUDE
+
+@{
+    ViewBag.Title = "Admin - Sửa Chủ đề";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h4 class="card-title" style="text-align:center; font-size:25px; color:red;">Sửa chủ đề @Model.TenChuDe</h4>
+    <dl class="dl-horizontal">
+        <div class="card" style=" margin-top: 75px;">
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaCD)
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>Tên chủ đề:</td>
+                                <td>
+                                    <input type="text" class="form-control" name="TenChuDe" min="1" required value="@Model.TenChuDe">
+                                    @Html.ValidationMessageFor(model => model.TenChuDe, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </dl>
+    <p>
+        <input type="submit" value="Save" class="btn btn-primary btn-tone m-r-5" />|
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Back to List", "Index")
+        </button>
+    </p>
+}
+
+
+

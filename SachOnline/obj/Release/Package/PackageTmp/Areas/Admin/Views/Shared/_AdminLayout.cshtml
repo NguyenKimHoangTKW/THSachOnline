@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Style/css/bootstrap.css" rel="stylesheet" />
+    <style type="text/css">
+        .imgbook {
+            transition: all 1s ease-in;
+            width: 400px;
+        }
+
+            .imgbook:hover {
+                transform: scale(0.9);
+                cursor: pointer;
+            }
+
+        .imgsachbannhieu {
+            width: 100px;
+        }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+    @Styles.Render("~/Content/AdminStyle/css")
+</head>
+<body>
+    <!--Nav-->
+    <nav class="navbar navbar-inverse">
+        <!--navbar-fixed-top-->
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data- target="#navbar1" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">Trang chủ</a>
+                <a class="navbar-brand" href="@Url.Action("Index", "SACHes")">Quản lý sách</a>
+                <a class="navbar-brand" href="@Url.Action("Index", "ChuDe")">Quản lý chủ đề</a>
+                <a class="navbar-brand" href="@Url.Action("Index", "NhaXuatBan")">Quản lý nhà xuất bản</a>
+                <a class="navbar-brand" href="@Url.Action("Index", "KhachHang")">Quản lý khách hàng</a>
+                <a class="navbar-brand" href="@Url.Action("Index", "DonHang")">Quản lý đơn hàng</a>
+                <a class="navbar-brand" href="@Url.Action("Logout", "Account", new {area =""})">Đăng xuất</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar1">
+ 
+                <ul class="nav navbar-nav navbar-left">
+                
+     
+                </ul>
+            </div>
+            <!--Tìm kiếm-->
+        </div>
+
+        <!-- /.container-->
+    </nav>
+    <!--End-Nav-->
+    <!--Phần tìm kiếm-->
+    <!--Phần Slide-->
+    <div class="container">
+       
+    </div>
+    <!--End-Phần Slide-->
+    <div class="container">
+        <div class="row">
+
+         
+            @RenderBody()
+        </div>
+
+
+        <hr>
+    </div>
+ 
+    <!--End-Footer-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="~/Style/js/bootstrap.js"></script>
+    <a href="~/Style/js/jquery-1.11.3"></a>
+    <script src="~/Style/js/jquery-1.11.3.min.js"></script>
+</body>
+</html>

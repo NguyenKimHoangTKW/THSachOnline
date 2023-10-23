@@ -1,0 +1,50 @@
+﻿@model IEnumerable<SachOnline.Models.NHAXUATBAN>
+
+@{
+    ViewBag.Title = "Admin - Nhà xuất bản";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+
+<a href="@Url.Action("Create","NhaXuatBan")">
+    <button class="btn btn-secondary btn-tone m-r-5">Thêm mới nhà xuất bản </button>
+</a>
+<div class="table-responsive" style="margin:0px auto;">
+    <table class="table">
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên nhà xuất bản</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">#</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr>
+                <td>#@i</td>
+                <td>@item.TenNXB</td>
+                <td>@item.DiaChi</td>
+                <td>@item.DienThoai</td>
+                <td>
+                    <a href="/Admin/NhaXuatBan/Details?id=@item.MaNXB">
+                        <button class="btn btn-info btn-tone m-r-5">Xem chi tiết </button>|
+                    </a>
+                    <a href="/Admin/NhaXuatBan/Edit?id=@item.MaNXB">
+                        <button class="btn btn-success btn-tone m-r-5">Sửa chủ đề</button>|
+                    </a>
+                    <a href="/Admin/NhaXuatBan/Delete?id=@item.MaNXB">
+                        <button class="btn btn-danger btn-tone m-r-5">Xóa chủ đề</button>
+                    </a>
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

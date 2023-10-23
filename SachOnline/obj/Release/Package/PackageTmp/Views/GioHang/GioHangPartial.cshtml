@@ -1,0 +1,11 @@
+﻿﻿@model IEnumerable<SachOnline.Models.GioHang>
+@{
+    ViewBag.Title = "GioHangPartial";
+
+}
+
+<a href="@Url.Action("GioHang","GioHang")">
+    <span class="glyphicon glyphicon-shopping-cart"></span>
+    Giỏ Hàng (@ViewBag.TongSoLuong)
+</a>
+

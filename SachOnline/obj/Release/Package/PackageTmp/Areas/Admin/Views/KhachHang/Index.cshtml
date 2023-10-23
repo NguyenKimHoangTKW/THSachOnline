@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<SachOnline.Models.KHACHHANG>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Admin - Khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+<a href="@Url.Action("Create","KhachHang")">
+    <button class="btn btn-secondary btn-tone m-r-5">Thêm mới khách hàng </button>
+</a>
+<div class="table-responsive" style="margin:0px auto;">
+    <table class="table">
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên khách hàng</th>
+            <th scope="col">Tên tài khoản</th>
+            <th scope="col">Mật khẩu</th>
+            <th scope="col">Email</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">#</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr>
+                <td>#@i</td>
+                <td>@item.HoTen</td>
+                <td>@item.TaiKhoan</td>
+                <td>@item.MatKhau</td>
+                <td>@item.Email</td>
+                <td>@item.DiaChi</td>
+                <td>@item.DienThoai</td>
+                <td>@string.Format("{0:dd-MM-yyyy}", item.NgaySinh) </td>
+                <td>
+                    <a href="/Admin/KhachHang/Details?id=@item.MaKH">
+                        <button class="btn btn-info btn-tone m-r-5">Xem</button>|
+                    </a>
+                    <a href="/Admin/KhachHang/Edit?id=@item.MaKH">
+                        <button class="btn btn-success btn-tone m-r-5">Sửa</button>|
+                    </a>
+                    <a href="/Admin/KhachHang/Delete?id=@item.MaKH">
+                        <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                    </a>
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<!-- Thêm mã phân trang -->
+<br />
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", "KhachHang", new { area = "Admin", page = page }))
+</div>
+<style>
+    .MenuTrang {
+        display: inline;
+        text-align: center;
+    }
+</style>
+<!-- Kết thúc -->

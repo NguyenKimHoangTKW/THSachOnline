@@ -1,0 +1,56 @@
+﻿@model SachOnline.Models.NHAXUATBAN
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div class="table-responsive" style="margin:0px auto;">
+        <table class="table">
+            <h4><strong>XEM CHI TIẾT NHÀ XUẤT BẢN</strong></h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên nhà xuất bản
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenNXB)
+                </dd>
+
+                <dt>
+                    Địa chỉ
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DiaChi)
+                </dd>
+
+                <dt>
+                    Số điện thoại
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DienThoai)
+                </dd>
+
+            </dl>
+            </table>
+    </div>
+    <p>
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.MaNXB })
+        </button>
+        <button class="btn btn-primary btn-tone m-r-5">
+            @Html.ActionLink("Back to List", "Index")
+            </button>
+    </p>
+</body>
+</html>

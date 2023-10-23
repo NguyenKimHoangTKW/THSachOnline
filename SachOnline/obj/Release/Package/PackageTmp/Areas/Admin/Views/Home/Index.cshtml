@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "Admin - Trang chủ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@{ var useradmin = Session["Admin"] as SachOnline.Models.ADMIN;}
+<h2 style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; ">Xin chào <b style="color:red;">@useradmin.HoTen</b></h2>
+</hr>
+<h2 style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; ">Chào mừng bạn đến với trang quản trị của Sách Online</h2>
+

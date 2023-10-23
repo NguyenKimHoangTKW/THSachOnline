@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SachOnline.Models.CHUDE>
+
+@{
+    ViewBag.Title = "Admin - Chủ đề";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+
+    <a href="@Url.Action("Create","ChuDe")">
+        <button class="btn btn-secondary btn-tone m-r-5">Thêm mới chủ đề </button>
+    </a>
+    <div class="table-responsive" style="margin:0px auto;">
+            <table class="table">
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Tên chủ đề</th>
+                    <th scope="col">#</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    i++;
+                    <tr>
+                        <td>#@i</td>
+                        <td>@item.TenChuDe</td>
+
+                        <td>
+                            <a href="/Admin/ChuDe/Details?id=@item.MaCD">
+                                <button class="btn btn-info btn-tone m-r-5">Xem chi tiết </button>|
+                            </a>
+                            <a href="/Admin/ChuDe/Edit?id=@item.MaCD">
+                                <button class="btn btn-success btn-tone m-r-5">Sửa chủ đề</button>|
+                            </a>
+                            <a href="/Admin/ChuDe/Delete?id=@item.MaCD">
+                                <button class="btn btn-danger btn-tone m-r-5">Xóa chủ đề</button>
+                            </a>
+
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+

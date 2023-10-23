@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SachOnline.Models.DONDATHANG>
+
+@{
+    ViewBag.Title = "Admin - Đơn đặt hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+
+<div class="table-responsive" style="margin:0px auto;">
+    <table class="table">
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên khách hàng</th>
+            <th scope="col">Ngày đặt</th>
+            <th scope="col">Ngày giao</th>
+            <th scope="col">Tình trạng giao hàng</th>
+            <th scope="col">Tình trạng Thanh toán</th>
+            <th scope="col">Xem chi tiết</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr>
+                <td>#@i</td>
+                <td>@item.KHACHHANG.HoTen</td>
+                <td>@item.NgayDat</td>
+                <td>@item.NgayGiao</td>
+                <td>@item.TinhTrangGiaoHang</td>
+                @if (item.DaThanhToan == true)
+                {
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-success badge-dot m-r-10"></div>
+                            <div>Đã thanh toán</div>
+                        </div>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-primary badge-dot m-r-10"></div>
+                            <div>Chưa thanh toán</div>
+                        </div>
+                    </td>
+                }
+                <td>
+                    <a href="@Url.Action("OrderDetail","DonHang", new {id = item.MaDonHang})">
+                        <button class="btn btn-info btn-tone m-r-5">Xem chi tiết đơn hàng </button>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,38 @@
+﻿@model PagedList.IPagedList<SachOnline.Models.SACH>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Trang Chủ";
+}
+
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+    <h2 class="text-center">SÁCH MỚI</h2>
+    <hr>
+    <div class="row text-center">
+        @foreach (var sach in Model)
+        {
+            <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                <div class="thumbnail">
+                    <img src="~/Style/Images/@sach.AnhBia" alt="Thumbnail Image 1" class="img-responsive img-rounded imgbook ">
+                    <div class="caption">
+                        <h3 style="min-height:70px"><a href="@Url.Action("ChiTietSach","SachOnline", new {id=sach.MaSach})" style="font-size:13px">@sach.TenSach</a></h3>
+                        <p><a href="@Url.Action("ThemGioHang","GioHang", new { ms = sach.MaSach, url = Request.Url.ToString() })" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+<br />
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang {
+        display: inline;
+        text-align: center;
+    }
+</style>
+@section SachBanNhieu{ @Html.Action("SachBanNhieu", "SachOnline")
+}
